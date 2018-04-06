@@ -1,7 +1,11 @@
 {
     "name": "audioapi-client",
     "version": "0.0.1",
-    "license": "GPLv3",
+    "license": "GPL-3.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/kaklakariada/audioapi-client.git"
+    },
     "scripts": {
         "start": "ts-node --project ./tsconfig.json ./src/download.ts"
     },
