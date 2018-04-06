@@ -3,7 +3,7 @@
     "version": "0.0.1",
     "license": "GPLv3",
     "scripts": {
-        "start": "ts-node --project . ./src/download.ts"
+        "start": "ts-node --project ./tsconfig.json ./src/download.ts"
     },
     "dependencies": {
         "https": "1.0.0",
