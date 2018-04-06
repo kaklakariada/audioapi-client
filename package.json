@@ -1,0 +1,22 @@
+{
+    "name": "audioapi-client",
+    "version": "0.0.1",
+    "license": "GPLv3",
+    "scripts": {
+        "start": "ts-node --project . ./src/download.ts"
+    },
+    "dependencies": {
+        "https": "1.0.0",
+        "request": "^2.85.0",
+        "request-promise-native": "^1.0.5",
+        "rxjs": "^5.5.8",
+        "typescript": "^2.8.1"
+    },
+    "devDependencies": {
+        "@types/node": "^8.0.53",
+        "@types/request": "^2.47.0",
+        "@types/request-promise-native": "^1.0.14",
+        "ts-node": "^5.0.1",
+        "tslint": "^5.9.1"
+    }
+}
