@@ -23,7 +23,7 @@ export class BroadcastSubscription {
 }
 
 export interface IDownloadConfig {
-    broadcastBaseUrl: string;
+    baseUrl: string;
     subscriptions: BroadcastSubscription[];
 }
 
