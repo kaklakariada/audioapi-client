@@ -8,6 +8,21 @@ export interface IBroadcast {
     title: string;
 }
 
+export interface IBroadcastDetail {
+    href: string;
+    station: string;
+    id: number;
+    broadcastDay: number;
+    programKey: string;
+    title: string;
+    streams: IStream[];
+}
+
+export interface IStream {
+    alias: string;
+    loopStreamId: string;
+}
+
 export interface IBroadcastDay {
     day: number;
     broadcasts: IBroadcast[];
@@ -24,10 +39,12 @@ export class BroadcastSubscription {
 
 export interface IDownloadConfig {
     baseUrl: string;
+    streamBaseUrl: string;
     subscriptions: BroadcastSubscription[];
 }
 
 export interface IDownloadTask {
     readonly subscription: BroadcastSubscription;
     readonly broadcast: IBroadcast;
+    readonly streams: IStream[];
 }
