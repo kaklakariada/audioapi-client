@@ -42,9 +42,3 @@ export interface IDownloadConfig {
     streamBaseUrl: string;
     subscriptions: BroadcastSubscription[];
 }
-
-export interface IDownloadTask {
-    readonly subscription: BroadcastSubscription;
-    readonly broadcast: IBroadcast;
-    readonly streams: IStream[];
-}
