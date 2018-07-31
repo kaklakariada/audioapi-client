@@ -10,11 +10,11 @@
         "start": "ts-node --project ./tsconfig.json ./src/download.ts"
     },
     "dependencies": {
-        "typed-rest-client": "^1.0.7",
-        "typescript": "^2.9.2"
+        "typed-rest-client": "1.0.7",
+        "typescript": "3.0.1"
     },
     "devDependencies": {
-        "ts-node": "^7.0.0",
-        "tslint": "^5.10.0"
+        "ts-node": "7.0.0",
+        "tslint": "5.11.0"
     }
 }
