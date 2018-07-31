@@ -7,7 +7,8 @@
         "url": "https://github.com/kaklakariada/audioapi-client.git"
     },
     "scripts": {
-        "start": "ts-node --project ./tsconfig.json ./src/download.ts"
+        "start": "ts-node --project ./tsconfig.json ./src/download.ts",
+        "lint": "tslint --config tslint.json --project tsconfig.json --format stylish"
     },
     "dependencies": {
         "typed-rest-client": "1.0.7",
