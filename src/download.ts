@@ -6,7 +6,6 @@ import { IBroadcast, IBroadcastDay, IBroadcastDetail } from "./lib";
 const restClient: rm.RestClient = new rm.RestClient("audioapi-client", config.baseUrl);
 
 function process(task: BroadcastDownloadTask): void {
-  console.log(task.broadcast.title);
   task.getStreams().forEach((streamDownload) => {
     console.log(streamDownload.getWgetCommand());
   });
