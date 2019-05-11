@@ -2,7 +2,7 @@
 import * as rm from "typed-rest-client/RestClient";
 import { config } from "../config";
 import { BroadcastDownloadTask } from "./DownloadTask";
-import { IBroadcast, IBroadcastDay, IBroadcastDetail } from "./lib";
+import { IBroadcastDay, IBroadcastDetail } from "./lib";
 const restClient: rm.RestClient = new rm.RestClient("audioapi-client", config.baseUrl);
 
 function process(task: BroadcastDownloadTask): void {

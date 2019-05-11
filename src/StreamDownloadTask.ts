@@ -1,5 +1,5 @@
 import { BroadcastDownloadTask } from "./DownloadTask";
-import { BroadcastSubscription, IBroadcast, IDownloadConfig, IStream } from "./lib";
+import { IStream } from "./lib";
 
 export class StreamDownloadTask {
     constructor(
