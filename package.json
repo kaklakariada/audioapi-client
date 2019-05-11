@@ -11,11 +11,11 @@
         "lint": "tslint --config tslint.json --project tsconfig.json --format stylish"
     },
     "dependencies": {
-        "typed-rest-client": "1.2.0",
-        "typescript": "3.3.4000"
+        "typed-rest-client": "1.4.0",
+        "typescript": "3.4.5"
     },
     "devDependencies": {
-        "ts-node": "8.0.3",
-        "tslint": "5.14.0"
+        "ts-node": "8.1.0",
+        "tslint": "5.16.0"
     }
 }
