@@ -11,28 +11,23 @@ function process(task: BroadcastDownloadTask): void {
   });
 }
 
-function run() {
-  restClient.get<IBroadcastDay[]>("broadcasts")
-    .then((data) => {
-      if (data.result === null) {
-        throw new Error("Got empty result");
+async function run() {
+  const data = await restClient.get<IBroadcastDay[]>("broadcasts");
+  if (data.result === null) {
+    throw new Error("Got empty result");
+  }
+  data.result.forEach((day) => {
+    day.broadcasts.forEach(async (broadcast) => {
+      const subscription = config.subscriptions.find((s) => s.matches(broadcast));
+      if (subscription) {
+        const detail = await restClient.get<IBroadcastDetail>(`broadcast/${broadcast.programKey}/${broadcast.broadcastDay}`);
+        if (detail.result === null) {
+          throw new Error("Got empty result");
+        }
+        process(new BroadcastDownloadTask(config, subscription, broadcast, detail.result.streams));
       }
-      data.result.forEach((day) => {
-        day.broadcasts.forEach((broadcast) => {
-          const subscription = config.subscriptions.find((s) => s.matches(broadcast));
-          if (subscription) {
-            restClient.get<IBroadcastDetail>(`broadcast/${broadcast.programKey}/${broadcast.broadcastDay}`)
-              .then((detail) => {
-                if (detail.result === null) {
-                  throw new Error("Got empty result");
-                }
-                process(new BroadcastDownloadTask(config, subscription, broadcast, detail.result.streams));
-              });
-          }
-        });
-      });
-    })
-    .catch((reason) => console.error("Failure: ", reason));
+    });
+  });
 }
 
 run();
