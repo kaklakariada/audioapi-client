@@ -12,21 +12,21 @@ async function run() {
     throw new Error("Got empty result");
   }
   data.result.forEach((day) => {
-    day.broadcasts.forEach(processBroadcast());
+    day.broadcasts.forEach(async (broadcast) => {
+      await processBroadcast(broadcast);
+    });
   });
 }
 
-function processBroadcast(): (value: IBroadcast, index: number, array: IBroadcast[]) => void {
-  return async (broadcast) => {
-    const subscription = config.subscriptions.find((s) => s.title === broadcast.title);
-    if (subscription) {
-      const detail = await restClient.get<IBroadcastDetail>(`broadcast/${broadcast.programKey}/${broadcast.broadcastDay}`);
-      if (detail.result === null) {
-        throw new Error("Got empty result");
-      }
-      process(new BroadcastDownloadTask(config, subscription, broadcast, detail.result.streams));
+async function processBroadcast(broadcast: IBroadcast) {
+  const subscription = config.subscriptions.find((s) => s.title === broadcast.title);
+  if (subscription) {
+    const detail = await restClient.get<IBroadcastDetail>(`broadcast/${broadcast.programKey}/${broadcast.broadcastDay}`);
+    if (detail.result === null) {
+      throw new Error("Got empty result");
     }
-  };
+    process(new BroadcastDownloadTask(config, subscription, broadcast, detail.result.streams));
+  }
 }
 
 function process(task: BroadcastDownloadTask): void {
@@ -36,4 +36,3 @@ function process(task: BroadcastDownloadTask): void {
 }
 
 run();
-
