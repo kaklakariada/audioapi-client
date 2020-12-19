@@ -13,8 +13,8 @@ Client for audioapi
         baseUrl: "<audio api baseUrl>",
         streamBaseUrl: "<stream base url>",
         subscriptions: [
-            new BroadcastSubscription("<title1>", "<target path1>"),
-            new BroadcastSubscription("<title2>", "<target path2>")
+            { title: "<title1>", targetFolder: "<target path1>"},
+            { title: "<title2>", targetFolder: "<target path2>"},
         ],
     };
     ```

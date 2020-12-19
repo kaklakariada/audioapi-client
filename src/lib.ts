@@ -28,13 +28,9 @@ export interface IBroadcastDay {
     broadcasts: IBroadcast[];
 }
 
-export class BroadcastSubscription {
-    constructor(
-        public readonly title: string,
-        readonly targetFolder: string) { }
-    public matches(broadcast: IBroadcast): boolean {
-        return this.title === broadcast.title;
-    }
+export interface BroadcastSubscription {
+    title: string;
+    targetFolder: string;
 }
 
 export interface IDownloadConfig {

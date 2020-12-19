@@ -18,7 +18,7 @@ async function run() {
   }
   data.result.forEach((day) => {
     day.broadcasts.forEach(async (broadcast) => {
-      const subscription = config.subscriptions.find((s) => s.matches(broadcast));
+      const subscription = config.subscriptions.find((s) => s.title === broadcast.title);
       if (subscription) {
         const detail = await restClient.get<IBroadcastDetail>(`broadcast/${broadcast.programKey}/${broadcast.broadcastDay}`);
         if (detail.result === null) {
