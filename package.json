@@ -8,13 +8,21 @@
     },
     "scripts": {
         "start": "ts-node --project ./tsconfig.json ./src/download.ts",
-        "lint": "tslint --config tslint.json --project tsconfig.json --format stylish"
+        "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx"
     },
     "dependencies": {
         "typed-rest-client": "1.8.0",
         "typescript": "4.1.3"
     },
     "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "^4.10.0",
+        "@typescript-eslint/eslint-plugin-tslint": "^4.10.0",
+        "@typescript-eslint/parser": "^4.10.0",
+        "eslint": "^7.16.0",
+        "eslint-config-prettier": "^7.1.0",
+        "eslint-plugin-import": "^2.22.1",
+        "eslint-plugin-jsdoc": "^30.7.9",
+        "eslint-plugin-prefer-arrow": "^1.2.2",
         "ts-node": "9.1.1",
         "tslint": "6.1.2"
     }
