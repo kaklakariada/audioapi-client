@@ -11,6 +11,10 @@ export class StreamDownloadTask {
         return `wget "${this.getDownloadUrl()}" -O ${this.getTargetFile()}`;
     }
 
+    public getCurlCommand(): string {
+        return `curl "${this.getDownloadUrl()}" --output "${this.getTargetFile()}"`;
+    }
+
     public getDownloadUrl(): string {
         return `${this.getStreamBaseUrl()}?channel=${this.getStation()}&id=${this.getStreamId()}`;
     }

@@ -31,7 +31,7 @@ async function processBroadcast(broadcast: IBroadcast) {
 
 function process(task: BroadcastDownloadTask): void {
   task.getStreams().forEach((streamDownload) => {
-    console.log(streamDownload.getWgetCommand());
+    console.log(streamDownload.getCurlCommand());
   });
 }
 
