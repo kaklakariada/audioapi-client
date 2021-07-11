@@ -5,11 +5,18 @@
     ],
     "compileOnSave": true,
     "compilerOptions": {
-        "strict": true,
         "noImplicitAny": true,
         "target": "es2017",
         "module": "commonjs",
         "sourceMap": true,
-        "outDir": "dist/"
+        "outDir": "dist/",
+        "strict": true,
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitOverride": true,
+        "noImplicitReturns": true,
+        "noPropertyAccessFromIndexSignature": true,
+        "noUncheckedIndexedAccess": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
     }
 }
