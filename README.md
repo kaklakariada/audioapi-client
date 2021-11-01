@@ -7,7 +7,7 @@ Client for audioapi
 1. Create file `config.ts` in the project folder with the following content:
 
     ```typescript
-    import { BroadcastSubscription, IDownloadConfig } from "./src/lib";
+    import { IDownloadConfig } from "./src/lib";
     
     export const config: IDownloadConfig = {
         baseUrl: "<audio api baseUrl>",
