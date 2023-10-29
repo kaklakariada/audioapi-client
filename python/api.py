@@ -4,6 +4,7 @@ from typing import Iterable, NamedTuple
 
 import requests
 
+
 class Subscription(NamedTuple):
     title: str
     targetFolder: Path
@@ -24,7 +25,8 @@ def get_broadcasts(base_url: str) -> dict:
     return r.json()
 
 
-def get_subscriptions(broadcast_data: dict, subscriptions: list[dict[str, str]]) -> Iterable[Subscription]:
+def get_subscriptions(broadcast_data: dict,
+                      subscriptions: list[dict[str, str]]) -> Iterable[Subscription]:
     subscription_target_folders: dict[str, Path] = {subscription["title"]: Path(
         subscription["targetFolder"]) for subscription in subscriptions}
     broadcasts_per_day = (day["broadcasts"] for day in broadcast_data)
@@ -47,10 +49,12 @@ def get_broadcast_detail(base_url: str, task: Subscription) -> dict:
 
 def get_streams(base_url: str, task: Subscription) -> Iterable[DownloadTask]:
     detail = get_broadcast_detail(base_url, task)
-    return (DownloadTask(streamId=stream["loopStreamId"], subscription=task) for stream in detail["streams"])
+    return (DownloadTask(streamId=stream["loopStreamId"],
+            subscription=task) for stream in detail["streams"])
 
 
-def get_download_tasks(base_url: str, subscriptions: list[dict[str, str]]) -> Iterable[DownloadTask]:
+def get_download_tasks(
+        base_url: str, subscriptions: list[dict[str, str]]) -> Iterable[DownloadTask]:
     broadcasts = get_broadcasts(base_url)
     tasks = (get_streams(base_url, task)
              for task in get_subscriptions(broadcasts, subscriptions))

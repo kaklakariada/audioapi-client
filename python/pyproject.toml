@@ -17,6 +17,7 @@ types-requests = "^2.31.0.10"
 types-tqdm = "^4.66.0.3"
 mypy = "^1.6.1"
 autopep8 = "^2.0.4"
+pycodestyle = "^2.11.1"
 
 [build-system]
 requires = ["poetry-core"]

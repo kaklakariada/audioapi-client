@@ -283,7 +283,7 @@ urllib3 = ">=2"
 name = "types-tqdm"
 version = "4.66.0.3"
 description = "Typing stubs for tqdm"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -324,4 +324,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "48ad40b070a16daaa471cd66b8ee505ea12c5602e0ef73f34cfb9d915e102579"
+content-hash = "3ef70c2734287c920830f5cd2a3f8544ffcff5db1cf21174fce0a9b20012d549"

@@ -3,6 +3,7 @@ from typing import Iterable
 
 from api import DownloadTask
 
+
 def download_one(task: DownloadTask) -> None:
     print("Download", task)
 

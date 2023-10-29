@@ -35,3 +35,15 @@ Run linter: `npm run lint`
 ```sh
 poetry run mypy .
 ```
+
+### Run Style Checker
+
+```sh
+poetry run pycodestyle *.py
+```
+
+### Run Formatter
+
+```sh
+poetry run autopep8 --in-place --aggressive *.py
+```
