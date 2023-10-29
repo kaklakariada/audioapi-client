@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "audioapi-client"
+version = "0.1.0"
+description = "Client for Audio API"
+authors = ["kaklakariada <kaklakariada@users.noreply.github.com>"]
+license = "GPL"
+readme = "README.md"
+packages = [{include = "audioapi_client"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+requests = "^2.31.0"
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.6.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

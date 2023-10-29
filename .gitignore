@@ -1,3 +1,5 @@
 /node/node_modules/
 /node/config.ts
 /node/dist
+
+/python/.venv/
