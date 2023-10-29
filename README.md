@@ -29,3 +29,9 @@ Run linter: `npm run lint`
 
 
 ## Python client
+
+### Run Type Checker
+
+```sh
+poetry run mypy .
+```

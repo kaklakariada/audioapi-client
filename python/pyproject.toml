@@ -10,9 +10,13 @@ packages = [{include = "audioapi_client"}]
 [tool.poetry.dependencies]
 python = "^3.11"
 requests = "^2.31.0"
+tqdm = "^4.66.1"
 
 [tool.poetry.group.dev.dependencies]
+types-requests = "^2.31.0.10"
+types-tqdm = "^4.66.0.3"
 mypy = "^1.6.1"
+autopep8 = "^2.0.4"
 
 [build-system]
 requires = ["poetry-core"]
