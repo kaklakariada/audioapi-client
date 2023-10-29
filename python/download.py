@@ -1,14 +1,14 @@
-from pathlib import Path
-import sys
+from concurrent import futures
+from typing import Iterable
 
-import config
-from api import get_download_tasks
+from api import DownloadTask
 
-
-def main():
-    for t in get_download_tasks(config.base_url, config.subscriptions):
-        print(f"Task: {t}")
+def download_one(task: DownloadTask) -> None:
+    print("Download", task)
 
 
-if __name__ == "__main__":
-    main()
+def download(tasks: list[DownloadTask]) -> None:
+    print(f"Starting {len(tasks)} downloads...")
+    with futures.ThreadPoolExecutor(max_workers=4) as executor:
+        executor.map(download_one, tasks)
+    print("Done")
