@@ -1,7 +1,9 @@
 # audioapi-client
-Client for audioapi
+Clients for audioapi
 
-## Usage
+## Node.js client
+
+### Usage
 
 1. Run `npm install`
 1. Create file `config.ts` in the project folder with the following content:
@@ -21,6 +23,9 @@ Client for audioapi
 
 1. Run `npm start` to generate `wget` commands for downloading the files.
 
-## Development
+### Development
 
 Run linter: `npm run lint`
+
+
+## Python client
