@@ -3,3 +3,6 @@
 /node/dist
 
 /python/.venv/
+/python/config.py
+/python/__pycache__/
+/python/src/__pycache__/
