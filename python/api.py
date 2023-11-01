@@ -16,6 +16,7 @@ class Subscription(NamedTuple):
 class DownloadTask(NamedTuple):
     subscription: Subscription
     streamId: str
+    url: str
 
 
 def get_broadcasts(base_url: str) -> dict:
@@ -33,11 +34,15 @@ def get_subscriptions(broadcast_data: dict,
     broadcasts = itertools.chain.from_iterable(broadcasts_per_day)
     subscribed_broadcasts = (
         b for b in broadcasts if b["title"] in subscription_target_folders)
-    return (Subscription(title=b["title"],
-                         station=b["station"],
-                         targetFolder=subscription_target_folders[b["title"]],
-                         broadcastDay=b["broadcastDay"],
-                         programKey=b["programKey"]) for b in subscribed_broadcasts)
+    return (create_subscription(b, subscription_target_folders[b["title"]]) for b in subscribed_broadcasts)
+
+
+def create_subscription(broadcast: dict, target_folder: str) -> Subscription:
+    return Subscription(title=broadcast["title"],
+                        station=broadcast["station"],
+                        targetFolder=target_folder,
+                        broadcastDay=broadcast["broadcastDay"],
+                        programKey=broadcast["programKey"])
 
 
 def get_broadcast_detail(base_url: str, task: Subscription) -> dict:
@@ -47,15 +52,20 @@ def get_broadcast_detail(base_url: str, task: Subscription) -> dict:
     return r.json()
 
 
-def get_streams(base_url: str, task: Subscription) -> Iterable[DownloadTask]:
-    detail = get_broadcast_detail(base_url, task)
-    return (DownloadTask(streamId=stream["loopStreamId"],
-            subscription=task) for stream in detail["streams"])
+def get_streams(base_url: str, subscription: Subscription, stream_base_url:str) -> Iterable[DownloadTask]:
+    detail = get_broadcast_detail(base_url, subscription)
+    return (create_download_task(stream, subscription, stream_base_url) for stream in detail["streams"])
+
+
+def create_download_task(stream: dict, subscription: Subscription, stream_base_url:str):
+    stream_id = stream["loopStreamId"]
+    url = f"{stream_base_url}?channel={subscription.station}&id={stream_id}"
+    return DownloadTask(streamId=stream_id, subscription=subscription, url=url)
 
 
 def get_download_tasks(
-        base_url: str, subscriptions: list[dict[str, str]]) -> Iterable[DownloadTask]:
+        base_url: str,stream_base_url:str, subscriptions: list[dict[str, str]]) -> Iterable[DownloadTask]:
     broadcasts = get_broadcasts(base_url)
-    tasks = (get_streams(base_url, task)
+    tasks = (get_streams(base_url, task,stream_base_url)
              for task in get_subscriptions(broadcasts, subscriptions))
     return itertools.chain.from_iterable(tasks)

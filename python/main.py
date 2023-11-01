@@ -7,7 +7,7 @@ from download import download
 
 
 def main() -> None:
-    tasks = get_download_tasks(config.base_url, config.subscriptions)
+    tasks = get_download_tasks(config.base_url,config.stream_base_url, config.subscriptions)
     download(list(tasks))
 
 
