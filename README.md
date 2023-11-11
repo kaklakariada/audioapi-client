@@ -45,11 +45,11 @@ poetry run mypy audioapi_client/
 ### Run Style Checker
 
 ```sh
-poetry run pycodestyle audioapi_client/*.py
+poetry run black audioapi_client/ --check
 ```
 
 ### Run Formatter
 
 ```sh
-poetry run autopep8 --in-place --aggressive audioapi_client/*.py
+poetry run black audioapi_client/
 ```
