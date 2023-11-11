@@ -30,10 +30,24 @@ Run linter: `npm run lint`
 
 ## Python client
 
+### Initial Setup
+
+Create a config file with your subscriptions:
+
+```py
+base_folder = "/tmp/downloads"
+base_url = "<audio api baseUrl>"
+stream_base_url = "<stream base url>"
+subscriptions = [
+    {"title": "<title1>", "targetFolder": f"{base_folder}/path1"},
+    {"title": "<title2>", "targetFolder": f"{base_folder}/path2"}
+]
+```
+
 ### Run
 
 ```sh
-poetry run download 
+poetry run download
 ```
 
 ### Run Type & Style Checker
