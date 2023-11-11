@@ -32,6 +32,7 @@ line-length = 120
 target-version = ['py311']
 include = '\.pyi?$'
 verbose = false
+extend-exclude = 'audioapi_client/config\.py'
 
 [tool.isort]
 profile = "black"
