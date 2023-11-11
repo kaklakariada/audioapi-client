@@ -26,7 +26,17 @@ jobs:
         
     - name: Install dependencies
       run: cd python && poetry install
-    - name: Lint with flake8
+
+    - name: Create dummy config
+      run: |
+        cat <<EOT > python/audioapi_client/config.py
+        base_folder = "/tmp"
+        base_url = "https://example.com"
+        stream_base_url = "https://example.com"
+        subscriptions = []
+        EOT
+
+    - name: Run checks
       run: cd python && poetry run nox -s check
     - name: Test with pytest
       run: cd python && poetry run pytest
