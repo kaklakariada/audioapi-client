@@ -39,17 +39,17 @@ poetry run download
 ### Run Type Checker
 
 ```sh
-poetry run mypy .
+poetry run mypy audioapi_client/
 ```
 
 ### Run Style Checker
 
 ```sh
-poetry run pycodestyle *.py
+poetry run pycodestyle audioapi_client/*.py
 ```
 
 ### Run Formatter
 
 ```sh
-poetry run autopep8 --in-place --aggressive *.py
+poetry run autopep8 --in-place --aggressive audioapi_client/*.py
 ```

@@ -6,8 +6,9 @@ from audioapi_client.api import get_download_tasks
 from audioapi_client.download import download
 from audioapi_client.config import base_folder, base_url, stream_base_url, subscriptions
 
+
 def main() -> None:
-    tasks = get_download_tasks(base_url,stream_base_url, subscriptions)
+    tasks = get_download_tasks(base_url, stream_base_url, subscriptions)
     download(list(tasks))
 
 

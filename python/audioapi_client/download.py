@@ -22,12 +22,13 @@ def download_one(task: DownloadTask) -> None:
         return start_download(target_file, task.url)
     print(f"Local file {target_file} has expected size, nothing to do")
 
-def start_download(target_file:Path, url:str) ->None:
+
+def start_download(target_file: Path, url: str) -> None:
     with requests.get(url, stream=True) as r:
         r.raise_for_status()
         total_size_in_bytes = int(r.headers.get('content-length', 0))
         print(f"remote size: {total_size_in_bytes}, status: {r.status_code}")
-        block_size = 1024 #1 Kibibyte
+        block_size = 1024  # 1 Kibibyte
         progress_bar = tqdm.tqdm(total=total_size_in_bytes, unit='iB', unit_scale=True)
         with open(target_file, 'wb') as file:
             for data in r.iter_content(block_size):
