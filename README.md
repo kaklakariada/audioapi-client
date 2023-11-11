@@ -33,7 +33,7 @@ Run linter: `npm run lint`
 ### Run
 
 ```sh
-poetry run download 
+poetry run download
 ```
 
 ### Run Type & Style Checker
