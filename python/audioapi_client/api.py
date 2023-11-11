@@ -37,7 +37,7 @@ def get_subscriptions(broadcast_data: dict,
     return (create_subscription(b, subscription_target_folders[b["title"]]) for b in subscribed_broadcasts)
 
 
-def create_subscription(broadcast: dict, target_folder: str) -> Subscription:
+def create_subscription(broadcast: dict, target_folder: Path) -> Subscription:
     return Subscription(title=broadcast["title"],
                         station=broadcast["station"],
                         targetFolder=target_folder,
@@ -57,7 +57,7 @@ def get_streams(base_url: str, subscription: Subscription, stream_base_url:str) 
     return (create_download_task(stream, subscription, stream_base_url) for stream in detail["streams"])
 
 
-def create_download_task(stream: dict, subscription: Subscription, stream_base_url:str):
+def create_download_task(stream: dict, subscription: Subscription, stream_base_url:str) -> DownloadTask:
     stream_id = stream["loopStreamId"]
     url = f"{stream_base_url}?channel={subscription.station}&id={stream_id}"
     return DownloadTask(streamId=stream_id, subscription=subscription, url=url)

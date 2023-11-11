@@ -30,6 +30,12 @@ Run linter: `npm run lint`
 
 ## Python client
 
+### Run
+
+```sh
+poetry run download 
+```
+
 ### Run Type Checker
 
 ```sh

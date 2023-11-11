@@ -5,7 +5,7 @@ from typing import Iterable
 import requests
 import tqdm
 
-from api import DownloadTask
+from audioapi_client.api import DownloadTask
 
 
 def download_one(task: DownloadTask) -> None:
