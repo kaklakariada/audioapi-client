@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Client for Audio API"
 authors = ["kaklakariada <kaklakariada@users.noreply.github.com>"]
 license = "GPL"
-readme = "README.md"
+readme = "../README.md"
 packages = [{include = "audioapi_client"}]
 
 [tool.poetry.dependencies]

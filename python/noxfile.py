@@ -10,6 +10,27 @@ class Mode(Enum):
     Check = auto()
 
 
+def _type_check(session: Session) -> None:
+    session.run(
+        "poetry",
+        "run",
+        "mypy",
+        # "--implicit-optional",
+        # "--warn-redundant-casts",
+        # "--warn-unreachable",
+        # "--strict-equality",
+        # "--strict",
+        "--explicit-package-bases",
+        "--namespace-packages",
+        "--show-error-codes",
+        "--pretty",
+        "--show-column-numbers",
+        "--show-error-context",
+        "--scripts-are-modules",
+        ".",
+    )
+
+
 def _code_format(session: Session, mode: Mode) -> None:
     isort = ["poetry", "run", "isort"]
     black = ["poetry", "run", "black"]
@@ -28,4 +49,5 @@ def fix(session: Session) -> None:
 @nox.session(name="check", python=False)
 def check(session: nox.Session) -> None:
     """Runs all available checks on the project"""
+    _type_check(session)
     _code_format(session, Mode.Check)

@@ -36,13 +36,7 @@ Run linter: `npm run lint`
 poetry run download 
 ```
 
-### Run Type Checker
-
-```sh
-poetry run mypy audioapi_client/
-```
-
-### Run Style Checker
+### Run Type & Style Checker
 
 ```sh
 poetry run nox -s check
