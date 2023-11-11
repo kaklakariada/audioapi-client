@@ -1,6 +1,6 @@
-
 from enum import Enum, auto
 from typing import Iterable
+
 import nox
 from nox import Session
 
@@ -9,6 +9,7 @@ class Mode(Enum):
     Fix = auto()
     Check = auto()
 
+
 def _code_format(session: Session, mode: Mode) -> None:
     isort = ["poetry", "run", "isort", "-v"]
     black = ["poetry", "run", "black"]
@@ -16,7 +17,6 @@ def _code_format(session: Session, mode: Mode) -> None:
     black = black if mode == Mode.Fix else black + ["--check"]
     session.run(*isort, ".")
     session.run(*black, ".")
-
 
 
 @nox.session(python=False)

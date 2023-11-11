@@ -26,11 +26,11 @@ def download_one(task: DownloadTask) -> None:
 def start_download(target_file: Path, url: str) -> None:
     with requests.get(url, stream=True) as r:
         r.raise_for_status()
-        total_size_in_bytes = int(r.headers.get('content-length', 0))
+        total_size_in_bytes = int(r.headers.get("content-length", 0))
         print(f"remote size: {total_size_in_bytes}, status: {r.status_code}")
         block_size = 1024  # 1 Kibibyte
-        progress_bar = tqdm.tqdm(total=total_size_in_bytes, unit='iB', unit_scale=True)
-        with open(target_file, 'wb') as file:
+        progress_bar = tqdm.tqdm(total=total_size_in_bytes, unit="iB", unit_scale=True)
+        with open(target_file, "wb") as file:
             for data in r.iter_content(block_size):
                 file.write(data)
                 progress_bar.update(len(data))
