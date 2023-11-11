@@ -45,11 +45,11 @@ poetry run mypy audioapi_client/
 ### Run Style Checker
 
 ```sh
-poetry run black audioapi_client/ --check
+poetry run nox -s check
 ```
 
 ### Run Formatter
 
 ```sh
-poetry run black audioapi_client/
+poetry run nox -s fix
 ```

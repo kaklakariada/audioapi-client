@@ -11,7 +11,7 @@ class Mode(Enum):
 
 
 def _code_format(session: Session, mode: Mode) -> None:
-    isort = ["poetry", "run", "isort", "-v"]
+    isort = ["poetry", "run", "isort"]
     black = ["poetry", "run", "black"]
     isort = isort if mode == Mode.Fix else isort + ["--check"]
     black = black if mode == Mode.Fix else black + ["--check"]

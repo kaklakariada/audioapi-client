@@ -31,7 +31,7 @@ download = "audioapi_client.main:main"
 line-length = 120
 target-version = ['py311']
 include = '\.pyi?$'
-verbose = true
+verbose = false
 
 [tool.isort]
 profile = "black"
