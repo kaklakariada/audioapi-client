@@ -30,10 +30,13 @@ jobs:
     - name: Create dummy config
       run: |
         cat <<EOT > python/audioapi_client/config.py
-        base_folder = "/tmp"
+        base_folder = "/tmp/downloads"
         base_url = "https://example.com"
         stream_base_url = "https://example.com"
-        subscriptions = []
+        subscriptions = [
+          {"title": "<title1>", "targetFolder": f"{base_folder}/path1"},
+          {"title": "<title2>", "targetFolder": f"{base_folder}/path2"}
+        ]
         EOT
 
     - name: Run checks
