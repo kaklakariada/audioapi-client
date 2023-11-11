@@ -38,3 +38,8 @@ extend-exclude = 'audioapi_client/config\.py'
 [tool.isort]
 profile = "black"
 #force_grid_wrap = 2
+
+[tool.pytest.ini_options]
+addopts = [
+    "--import-mode=importlib",
+]
