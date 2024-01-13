@@ -1,4 +1,5 @@
 from concurrent import futures
+import os
 from pathlib import Path
 from typing import Iterable
 
@@ -24,6 +25,8 @@ def download_one(task: DownloadTask) -> None:
 
 
 def start_download(target_file: Path, url: str) -> None:
+    if not target_file.parent.is_dir():
+        os.makedirs(target_file.parent)
     with requests.get(url, stream=True) as r:
         r.raise_for_status()
         total_size_in_bytes = int(r.headers.get("content-length", 0))
