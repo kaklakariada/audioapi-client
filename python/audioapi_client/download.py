@@ -1,5 +1,5 @@
-from concurrent import futures
 import os
+from concurrent import futures
 from pathlib import Path
 from typing import Iterable
 
