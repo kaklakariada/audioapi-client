@@ -24,8 +24,10 @@ def already_exists(task: DownloadTask) -> bool:
 
 def main() -> None:
     tasks = get_download_tasks(base_url, stream_base_url, subscriptions)
-    tasks = (t for t in tasks if not already_exists(t))
-    download(list(tasks))
+    tasks = [t for t in tasks if not already_exists(t)]
+    print(f"Starting {len(tasks)} downloads...")
+    download(tasks)
+    print("Done")
 
 
 if __name__ == "__main__":

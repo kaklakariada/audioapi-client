@@ -33,9 +33,7 @@ def start_download(target_file: Path, url: str) -> None:
 
 
 def download(tasks: list[DownloadTask]) -> None:
-    print(f"Starting {len(tasks)} downloads...")
     with futures.ThreadPoolExecutor(max_workers=4) as executor:
         result = executor.map(download_one, tasks)
     for r in result:
         print(f"Task finished: {r}")
-    print("Done")
