@@ -2,9 +2,10 @@ import sys
 from pathlib import Path
 
 import audioapi_client.config
-from audioapi_client.api import get_download_tasks, DownloadTask
+from audioapi_client.api import DownloadTask, get_download_tasks
 from audioapi_client.config import base_folder, base_url, stream_base_url, subscriptions
 from audioapi_client.download import download
+
 
 def already_exists(task: DownloadTask) -> bool:
     target_file = task.local_path
@@ -19,6 +20,7 @@ def already_exists(task: DownloadTask) -> bool:
         print(f"Local file {target_file} has expected size minus one && , nothing to do")
         return True
     return False
+
 
 def main() -> None:
     tasks = get_download_tasks(base_url, stream_base_url, subscriptions)
