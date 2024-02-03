@@ -11,22 +11,12 @@ from audioapi_client.api import DownloadTask
 
 def download_one(task: DownloadTask) -> None:
     target_file = task.subscription.targetFolder / task.streamId
-    if not target_file.is_file():
-        print(f"Local file {target_file} does not exist, start download")
-        return start_download(target_file, task.url)
-    r = requests.head(task.url)
-    r.raise_for_status()
-    local_size = target_file.stat().st_size
-    remote_size = int(r.headers["content-length"])
-    if local_size != remote_size:
-        print(f"Local file {target_file} has size {local_size}, expected {remote_size}, start download")
-        return start_download(target_file, task.url)
-    print(f"Local file {target_file} has expected size, nothing to do")
+    if not target_file.parent.is_dir():
+        os.makedirs(target_file.parent)
+    return start_download(target_file, task.url)
 
 
 def start_download(target_file: Path, url: str) -> None:
-    if not target_file.parent.is_dir():
-        os.makedirs(target_file.parent)
     with requests.get(url, stream=True) as r:
         r.raise_for_status()
         total_size_in_bytes = int(r.headers.get("content-length", 0))

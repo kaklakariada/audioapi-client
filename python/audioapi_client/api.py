@@ -17,6 +17,11 @@ class DownloadTask(NamedTuple):
     subscription: Subscription
     streamId: str
     url: str
+    size: int
+    
+    @property
+    def local_path(self) -> Path:
+        return self.subscription.targetFolder / self.streamId
 
 
 def get_broadcasts(base_url: str) -> dict:
@@ -56,11 +61,15 @@ def get_streams(base_url: str, subscription: Subscription, stream_base_url: str)
     detail = get_broadcast_detail(base_url, subscription)
     return (create_download_task(stream, subscription, stream_base_url) for stream in detail["streams"])
 
+def get_size(url: str) -> int:
+    r = requests.head(url)
+    r.raise_for_status()
+    return int(r.headers["content-length"])
 
 def create_download_task(stream: dict, subscription: Subscription, stream_base_url: str) -> DownloadTask:
     stream_id = stream["loopStreamId"]
     url = f"{stream_base_url}?channel={subscription.station}&id={stream_id}"
-    return DownloadTask(streamId=stream_id, subscription=subscription, url=url)
+    return DownloadTask(streamId=stream_id, subscription=subscription, url=url, size=get_size(url))
 
 
 def get_download_tasks(
