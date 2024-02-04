@@ -22,15 +22,19 @@ def already_exists(task: DownloadTask) -> bool:
         return True
     return False
 
+
 def init_argparse() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        usage="%(prog)s [OPTION]...",
-        description="Download subscriptions using the Audio API"
+        usage="%(prog)s [OPTION]...", description="Download subscriptions using the Audio API"
     )
     parser.add_argument(
-        "-d", "--dry-run", action='store_true', help="Dry run: only check if new files are available but does not download them."
+        "-d",
+        "--dry-run",
+        action="store_true",
+        help="Dry run: only check if new files are available but does not download them.",
     )
     return parser
+
 
 def main() -> None:
     parser = init_argparse()
